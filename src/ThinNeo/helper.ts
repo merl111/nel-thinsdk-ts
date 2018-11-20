@@ -7,16 +7,14 @@ declare var scrypt: any;
 var scrypt_loaded: boolean = false;
 
 export function GetPrivateKeyFromWIF(wif: string): Uint8Array {
+
   if (wif == null) throw new Error("null wif");
   var data = Neo.Cryptography.Base58.decode(wif);
-  //检查标志位
   if (data.length != 38 || data[0] != 0x80 || data[33] != 0x01)
     throw new Error("wif length or tag is error");
-  //取出检验字节
+
   var sum = data.subarray(data.length - 4, data.length);
   var realdata = data.subarray(0, data.length - 4);
-
-  //验证,对前34字节进行进行两次hash取前4个字节
   var _checksum = Neo.Cryptography.Sha256.computeHash(realdata);
   var checksum = new Uint8Array(Neo.Cryptography.Sha256.computeHash(_checksum));
   var sumcalc = checksum.subarray(0, 4);

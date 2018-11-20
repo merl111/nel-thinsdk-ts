@@ -10,6 +10,7 @@ interface ArrayConstructor {
     dstOffset: number,
     count: number
   ): void;
+
   fromArray<T>(arr: ArrayLike<T>): Array<T>;
 }
 

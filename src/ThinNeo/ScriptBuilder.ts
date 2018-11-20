@@ -128,14 +128,7 @@ export class ScriptBuilder {
     }
     return array;
   }
-  //如果参数为string,其实是特殊值
-  //(string) or(str) 开头，表示是个字符串，utf8编码为bytes
-  //(bytes) or([])开头，表示就是一个bytearray
-  //(address) or(addr)开头，表示是一个地址，转换为脚本hash
-  //(integer) or(int) 开头，表示是一个大整数
-  //(hexinteger) or (hexint) or (hex) 开头，表示是一个16进制表示的大整数，转换为bytes就是反序
-  //(int256) or (hex256) 开头,表示是一个定长的256位 16进制大整数
-  //(int160) or (hex160) 开头,表示是一个定长的160位 16进制大整数
+
   public EmitParamJson(param: any): ScriptBuilder {
     if (typeof param === "number") {
       //bool 或小整数
